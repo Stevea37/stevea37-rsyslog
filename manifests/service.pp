@@ -1,5 +1,5 @@
-# == Class: rsyslog::service
-class rsyslog::service inherits rsyslog {
+# == Class: rsyslogging::service
+class rsyslogging::service inherits rsyslog {
 
   service { $service_name:
     ensure     => running,

@@ -1,5 +1,5 @@
-# == Class: rsyslog::params
-class rsyslog::params inherits rsyslog {
+# == Class: rsyslogging::params
+class rsyslogging::params inherits rsyslog {
 
   #
   # OSFamily Specific Definitions
