@@ -35,7 +35,7 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class rsyslogging inherits rsyslogging::params {
+class rsyslog inherits rsyslog::params {
 
   fail('You must call either the server or client manifest.')
 

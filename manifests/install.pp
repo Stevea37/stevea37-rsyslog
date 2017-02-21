@@ -1,5 +1,5 @@
-# == Class: rsyslogging::install
-class rsyslogging::install inherits rsyslog {
+# == Class: rsyslog::install
+class rsyslog::install inherits rsyslog {
 
   package { $package_name:
     ensure => installed,

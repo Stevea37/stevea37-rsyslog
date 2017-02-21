@@ -1,5 +1,5 @@
-# == Class: rsyslogging::config
-class rsyslogging::config inherits rsyslog {
+# == Class: rsyslog::config
+class rsyslog::config inherits rsyslog {
 
   file { '/etc/rsyslog.conf':
     ensure  => file,
