@@ -19,9 +19,9 @@ class rsyslog::package {
 
   package { 'rsyslog':
     ensure  => present,
-    require => [
-      Exec['apt-update-rsyslog'],
-    ],
+    #require => [
+    #  Exec['apt-update-rsyslog'],
+    #],
   }
 
   package { 'rsyslog-elasticsearch':
