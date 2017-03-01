@@ -21,7 +21,6 @@ class rsyslog::params {
     }
   }
 
-
   #
   # File Definitions
   #

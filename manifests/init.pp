@@ -37,6 +37,14 @@
 #
 class rsyslog inherits rsyslog::params {
 
-  fail('You must call either the server or client manifest.')
+
+  if $::server_type == 'log-aggregator' {
+    notice('Installing server role')
+    include rsyslog::server::init
+  }
+  else {
+    notice('Installing client role')
+    include rsyslog::client::init
+  }
 
 }
