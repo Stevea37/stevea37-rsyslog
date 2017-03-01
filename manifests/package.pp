@@ -17,12 +17,12 @@ class rsyslog::package {
     #  Apt::Ppa['ppa:adiscon/v8-stable ']
     #],
   #}
+  #require => [
+  #  Exec['apt-update-rsyslog'],
+  #],
 
   package { 'rsyslog':
     ensure  => present,
-    #require => [
-    #  Exec['apt-update-rsyslog'],
-    #],
   }
 
   package { 'rsyslog-elasticsearch':
