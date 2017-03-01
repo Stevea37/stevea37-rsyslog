@@ -1,0 +1,2 @@
+VERSION (?<=Version=)(?'version'.*)(?=, Built=)
+ENVIRONMENT (?<=\.)(?'environment'.*?)(?=\.)

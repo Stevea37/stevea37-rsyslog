@@ -1,0 +1,10 @@
+# provides --MARK-- message capability
+$ModLoad immark
+
+# provider RELP syslog reception
+module(load="imrelp")
+
+input(type="imrelp" port="514" tls="on")
+
+$template HostProgramName, "/var/log/hosts/%HOSTNAME%/%PROGRAMNAME%.log"
+*.* ?HostProgramName

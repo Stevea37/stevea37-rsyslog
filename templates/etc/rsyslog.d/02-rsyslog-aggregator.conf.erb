@@ -1,0 +1,33 @@
+# provides --MARK-- message capability
+$ModLoad immark
+
+# provider RELP syslog reception
+module(load="imrelp")
+
+input(type="imrelp" port="514" tls="on")
+
+$template HostProgramName, "/var/log/hosts/%HOSTNAME%/%PROGRAMNAME%.log"
+*.* ?HostProgramName
+
+template(name="pipe_delimited" type="list") {
+  property(name="timereported" dateFormat="rfc3339")
+  constant(value="|")
+  property(name="syslogseverity-text")
+  constant(value="|")
+  property(name="hostname")
+  constant(value="|")
+  property(name="syslogfacility-text")
+  constant(value="|")
+  property(name="syslogtag")
+  constant(value="|")
+  property(name="msg")
+}
+
+template (name="LongTagForwardFormat" type="string" string="<%PRI%>%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%")
+
+# For outputting to archiver
+module(load="omrelp")
+action(type="omrelp" template="LongTagForwardFormat" target="rsyslog-archiver.forwarding.dpm.internal" port="514" tls="on")
+
+# For outputting to logstash
+action(type="omfwd" Template="pipe_delimited" Target="logstash.forwarding.dpm.internal" Port="10514" Protocol="tcp")

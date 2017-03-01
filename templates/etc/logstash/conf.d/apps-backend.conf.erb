@@ -1,0 +1,47 @@
+input {
+  tcp {
+    port => 10514
+    codec => multiline {
+      pattern => "^%{TIMESTAMP_ISO8601}(?!.*\|[\t])"
+      negate => true
+      what => "previous"
+    }
+  }
+}
+
+filter {
+  grok {
+    match => { "message" => "%{TIMESTAMP_ISO8601:datetime}\|%{LOGLEVEL:severity}\|%{SYSLOGHOST:host}\|%{WORD:facility}\|%{SYSLOGPROG}?:\|?%{SPACE}%{GREEDYDATA:message}" }
+    overwrite => ["message"]
+    overwrite => ["host"]
+    break_on_match => false
+  }
+  grok {
+    patterns_dir => ["/etc/logstash/patterns"]
+    match => { "host" => "%{ENVIRONMENT}" }
+    overwrite => "environment"
+  }
+  date {
+    match => ["datetime", "ISO8601"]
+    target => "@timestamp"
+  }
+  mutate {
+    remove_field => [ "datetime", "@version", "_score" ]
+  }
+  if [message] =~ /.*Version=.*, Built=.*/
+  {
+    grok {
+      patterns_dir => ["/etc/logstash/patterns"]
+      match => { "message" => "%{VERSION}" }
+      overwrite => "version"
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => "<%= @elasticsearch_host %>"
+    ssl => "true"
+    index => "coop-membership-%{+YYYY.MM.dd}"
+  }
+}
