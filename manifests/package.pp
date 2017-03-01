@@ -10,12 +10,12 @@ class rsyslog::package {
   #  package_manage => true,
   #}
 
-  exec { 'apt-update-rsyslog':
-    command => '/usr/bin/apt-get update',
+  #exec { 'apt-update-rsyslog':
+  #  command => '/usr/bin/apt-get update',
     #require => [
     #  Apt::Ppa['ppa:adiscon/v8-stable ']
     #],
-  }
+  #}
 
   package { 'rsyslog':
     ensure  => present,
