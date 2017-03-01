@@ -1,8 +1,8 @@
-# == Class: rsyslog::archiver
+# == Class: rsyslog::archive
 #
 # Provides configuration for rsyslog archiver
 #
-class rsyslog::archiver {
+class rsyslog::archive {
 
   service { 'rsyslog':
     ensure   => 'running',
