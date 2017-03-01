@@ -6,6 +6,7 @@ class rsyslog::package {
 
   include apt
 
+  notice("Running install")
   #apt::ppa { 'ppa:adiscon/v8-stable ':
   #  package_manage => true,
   #}
