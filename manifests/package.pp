@@ -24,11 +24,13 @@ class rsyslog::package {
   package { 'rsyslog':
     name => 'rsyslog',
     ensure  => present,
+    allow_virtual => false
   }
 
   package { 'rsyslog-elasticsearch':
     name => 'rsyslog-elasticsearch',
     ensure  => present,
+    allow_virtual => false,
     require => [
       Package['rsyslog'],
     ],
@@ -37,6 +39,7 @@ class rsyslog::package {
   package { 'rsyslog-relp':
     name => 'rsyslog-relp',
     ensure  => present,
+    allow_virtual => false,
     require => [
       Package['rsyslog'],
     ],
