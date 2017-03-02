@@ -4,7 +4,7 @@
 #
 class rsyslog::archiver {
 
-
+  notice("Running rsyslog::archiver")
   service { 'rsyslog':
     ensure   => 'running',
     enable   => true

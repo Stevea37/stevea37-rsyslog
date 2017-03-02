@@ -3,10 +3,10 @@
 # Installs latest stable version of rsyslog package and required modules.
 #
 class rsyslog::package {
-
+  notice("Running rsyslog::package")
   include apt
 
-  notice("Running install")
+
   #apt::ppa { 'ppa:adiscon/v8-stable ':
   #  package_manage => true,
   #}

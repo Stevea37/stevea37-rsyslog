@@ -5,7 +5,7 @@
 class rsyslog::client(
   $forwarder_host = undef
 ) {
-
+  notice("Running rsyslog::client")
   service { 'rsyslog':
     ensure   => 'running',
     enable   => true
