@@ -6,5 +6,6 @@
 class rsyslog {
 
   include rsyslog::package
+  include rsyslog::archiver
 
 }
