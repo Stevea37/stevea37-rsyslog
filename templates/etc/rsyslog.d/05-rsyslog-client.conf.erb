@@ -1,4 +1,4 @@
-template (name="LongTagForwardFormat" type="string" string="<%PRI%>%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%")
+template (name="LongTagForwardFormat" type="string" string="<%%PRI%>%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%")
 
 module(load="omrelp")
 action(type="omrelp" template="LongTagForwardFormat" target="<%= @forwarder_host %>" port="514" tls="on")
