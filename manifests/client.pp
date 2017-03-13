@@ -3,7 +3,7 @@
 # Provides configuration for rsyslog client
 #
 class rsyslog::client(
-  $forwarder_host = '10.55.3.219'
+  $forwarder_host = undef
 ) {
   notice("Running rsyslog::client")
   service { 'rsyslog':
