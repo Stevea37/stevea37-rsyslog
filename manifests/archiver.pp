@@ -12,10 +12,11 @@ class rsyslog::archiver {
 
   if $::server_type == 'log-aggregator' {
     firewall { '007 Allow inbound TCP (514)':
-      dport   => 514,
-      proto   => tcp,
-      action  => accept,
+      dport  => 514,
+      proto  => tcp,
+      action => accept,
     }
+  }
 
   file { '/etc/rsyslog.conf':
     ensure  => present,
