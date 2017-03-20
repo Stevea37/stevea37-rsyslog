@@ -5,7 +5,7 @@
 class rsyslog::package {
   notice("Running rsyslog::package")
 
-  if $::osfamily == "Debian" {
+  if $::osfamily != "RedHat" {
     include apt
   }
 
@@ -29,22 +29,23 @@ class rsyslog::package {
     allow_virtual => false
   }
 
-  package { 'rsyslog-elasticsearch':
-    name => 'rsyslog-elasticsearch',
-    ensure  => present,
-    allow_virtual => false,
-    require => [
-      Package['rsyslog'],
-    ],
-  }
+  if $osfamily != "RedHat" {
+    package { 'rsyslog-elasticsearch':
+      name          => 'rsyslog-elasticsearch',
+      ensure        => present,
+      allow_virtual => false,
+      require       => [
+        Package['rsyslog'],
+      ],
+    }
 
-  package { 'rsyslog-relp':
-    name => 'rsyslog-relp',
-    ensure  => present,
-    allow_virtual => false,
-    require => [
-      Package['rsyslog'],
-    ],
+    package { 'rsyslog-relp':
+      name          => 'rsyslog-relp',
+      ensure        => present,
+      allow_virtual => false,
+      require       => [
+        Package['rsyslog'],
+      ],
+    }
   }
-
 }
