@@ -4,8 +4,10 @@
 #
 class rsyslog::package {
   notice("Running rsyslog::package")
-  include apt
 
+  if $::osfamily == "Debian" {
+    include apt
+  }
 
   #apt::ppa { 'ppa:adiscon/v8-stable ':
   #  package_manage => true,
