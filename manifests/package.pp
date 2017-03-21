@@ -3,6 +3,7 @@
 # Installs latest stable version of rsyslog package and required modules.
 #
 class rsyslog::package {
+
   notice("Running rsyslog::package")
 
   if $::osfamily == "Debian" {
