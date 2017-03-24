@@ -20,7 +20,7 @@ class rsyslog::archiver {
 
   file { '/etc/rsyslog.conf':
     ensure  => present,
-    content => template('rsyslog/etc/rsyslog.conf.erb'),
+    content => template('rsyslog/etc/rsyslog.conf.server.erb'),
     owner   => 'root',
     group   => 'root',
     require => Class['rsyslog::package'],

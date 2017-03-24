@@ -15,7 +15,7 @@ class rsyslog::client(
 
   file { '/etc/rsyslog.conf':
     ensure  => present,
-    content => template('rsyslog/etc/rsyslog.conf.erb'),
+    content => template('rsyslog/etc/rsyslog.conf.client.erb'),
     owner   => 'root',
     group   => 'root',
     notify  => Service['rsyslog']
