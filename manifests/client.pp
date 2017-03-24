@@ -3,7 +3,9 @@
 # Provides configuration for rsyslog client
 #
 class rsyslog::client(
-  $forwarder_host = 'log-aggregator.fnc.internal'
+  $forwarder_host = 'log-aggregator.fnc.internal',
+  $server_type = $::server_type
+
 ) {
   notice("Running rsyslog::client")
   service { 'rsyslog':
