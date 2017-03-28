@@ -17,6 +17,7 @@ class rsyslog::archiver {
       action => accept,
     }
   }
+  $environment_type = $::env_type
 
   file { '/etc/rsyslog.conf':
     ensure  => present,

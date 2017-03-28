@@ -6,5 +6,5 @@ module(load="imrelp")
 
 input(type="imrelp" port="514" tls="on")
 
-$template HostProgramName, "/var/log/hosts/%HOSTNAME%/%PROGRAMNAME%.log"
+$template HostProgramName, "/var/log/hosts/<%= @environment_type %>/%HOSTNAME%/%PROGRAMNAME%.log"
 *.* ?HostProgramName
