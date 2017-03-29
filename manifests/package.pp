@@ -31,13 +31,20 @@ class rsyslog::package {
       group   => 'root',
     }
 
+    package { 'gnutls-devel':
+      name          => 'gnutls-devel',
+      ensure        => present,
+      allow_virtual => false,
+    }
+
     package { 'rsyslog':
       name          => 'rsyslog',
       ensure        => present,
       allow_virtual => false,
       install_options  => ['--disablerepo=amzn-main'],
       require       => [
-        File['/etc/yum.repos.d/rsyslog.repo']
+        File['/etc/yum.repos.d/rsyslog.repo'],
+        Package['gnutls-devel']
       ],
     }
 
